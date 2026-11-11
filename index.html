@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cardápio Digital Profissional | WRC Digital</title>
+<meta name="description" content="Tenha um cardápio digital profissional para seu negócio. Peça o seu pela WRC Digital.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4AF37;--gold2:#F0D77A;--bg:#0a0a0a;--card:#141414;--line:#2a2a2a;--txt:#fff;--mut:#b5b5b5}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{background:radial-gradient(ellipse at top,#1c1608 0,var(--bg) 55%);color:var(--txt);font-family:Montserrat,system-ui,sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+.wrap{width:100%;max-width:520px;margin:0 auto;padding:20px;flex:1;display:flex;flex-direction:column;justify-content:center}
+.brand{text-align:center;font-weight:800;letter-spacing:.25em;font-size:.85rem;margin-bottom:24px}
+.brand b{color:var(--gold)}
+.screen{display:none;animation:in .45s ease both}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(1.7rem,7vw,2.3rem);line-height:1.15;font-weight:800;margin-bottom:16px}
+h1 span,h2 span{color:var(--gold)}
+h2{font-size:clamp(1.3rem,5.5vw,1.7rem);line-height:1.25;font-weight:800;margin-bottom:20px}
+p.sub{color:var(--mut);line-height:1.6;margin-bottom:28px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:18px 16px;font:800 .95rem Montserrat,sans-serif;letter-spacing:.04em;cursor:pointer;color:#000;background:linear-gradient(135deg,var(--gold),var(--gold2));box-shadow:0 8px 28px rgba(212,175,55,.28);transition:transform .15s,box-shadow .15s}
+.btn:active{transform:scale(.98)}
+.btn:hover{box-shadow:0 10px 34px rgba(212,175,55,.45)}
+.pulse{animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 8px 28px rgba(212,175,55,.28)}50%{box-shadow:0 8px 40px rgba(212,175,55,.6)}}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.back{background:none;border:1px solid var(--line);color:var(--txt);width:40px;height:40px;border-radius:50%;font-size:1.1rem;cursor:pointer;flex:none}
+.back[hidden]{visibility:hidden;display:block}
+.bar{flex:1;height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .4s ease}
+.cnt{font-size:.75rem;color:var(--mut);min-width:34px;text-align:right}
+.opts{display:grid;gap:10px}
+.opt{width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);color:var(--txt);border-radius:14px;padding:17px 16px;font:600 .95rem Montserrat,sans-serif;cursor:pointer;transition:border-color .15s,background .15s,transform .15s}
+.opt:hover,.opt.sel{border-color:var(--gold);background:#1b1708}
+.opt:active{transform:scale(.98)}
+.grid2{grid-template-columns:1fr 1fr}
+input.txt{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:18px 16px;color:var(--txt);font:600 1rem Montserrat,sans-serif;outline:none;margin-bottom:14px;transition:border-color .15s}
+input.txt:focus{border-color:var(--gold)}
+.err{color:#ff6b6b;font-size:.82rem;min-height:1.2em;margin:-4px 0 10px}
+.check{width:72px;height:72px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:2rem;margin:0 auto 22px}
+.center{text-align:center}
+.foot{text-align:center;color:#666;font-size:.72rem;padding:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">WRC <b>DIGITAL</b></div>
+
+  <section class="screen on" id="intro">
+    <h1>Tenha um <span>cardápio digital profissional</span> para seu negócio!</h1>
+    <p class="sub">Facilite os pedidos dos seus clientes, apresente seus produtos de forma profissional e modernize seu estabelecimento.</p>
+    <button class="btn pulse" id="start">QUERO MEU CARDÁPIO DIGITAL</button>
+  </section>
+
+  <section class="screen" id="quiz">
+    <div class="top">
+      <button class="back" id="back" aria-label="Voltar">←</button>
+      <div class="bar"><i id="fill"></i></div>
+      <span class="cnt" id="cnt"></span>
+    </div>
+    <h2 id="q"></h2>
+    <div id="a"></div>
+  </section>
+
+  <section class="screen center" id="done">
+    <div class="check">✓</div>
+    <h1>Perfeito! <span>Recebemos suas informações.</span></h1>
+    <p class="sub">Falta só um passo: continue pelo WhatsApp para receber seu atendimento.</p>
+    <button class="btn pulse" id="wa">CONTINUAR PELO WHATSAPP</button>
+    <button class="back" id="edit" style="width:auto;border-radius:12px;padding:12px 18px;margin-top:16px;font:600 .85rem Montserrat,sans-serif">Revisar respostas</button>
+  </section>
+</div>
+<div class="foot">© WRC Digital</div>
+
+<script>
+/* ===== CONFIGURAÇÃO ===== */
+// Número com DDI + DDD, só dígitos. Ex.: "5527999999999"
+const WHATSAPP_NUMBER = "5527997230221";
+/* ======================== */
+
+const STEPS = [
+  {k:"nome", q:"Qual é o seu <span>nome</span>?", t:"text", ph:"Seu nome"},
+  {k:"estabelecimento", q:"Qual é o nome do seu <span>estabelecimento</span>?", t:"text", ph:"Nome do estabelecimento"},
+  {k:"segmento", q:"Qual é o <span>segmento</span> do seu negócio?", t:"opt", cols:2,
+    o:["Hamburgueria","Pizzaria","Restaurante","Lanchonete","Açaíteria","Sorveteria","Conveniência","Outro"]},
+  {k:"cidade", q:"Em qual <span>cidade</span> seu estabelecimento está localizado?", t:"text", ph:"Sua cidade"},
+  {k:"atual", q:"Atualmente, como você <span>apresenta seus produtos</span> aos clientes?", t:"opt",
+    o:["Cardápio impresso","Fotos pelo WhatsApp","Instagram","Já tenho um cardápio digital","Não tenho um cardápio organizado"]},
+  {k:"interesse", q:"O que você <span>procura</span>?", t:"opt",
+    o:["Um cardápio digital simples e profissional.","Um cardápio com categorias, produtos e carrinho.","Um cardápio com pedidos direcionados ao WhatsApp.","Quero conhecer as opções primeiro."]},
+  {k:"prazo", q:"<span>Quando</span> pretende contratar?", t:"opt",
+    o:["O mais rápido possível.","Nos próximos 7 dias.","Nos próximos 30 dias.","Estou apenas pesquisando."]}
+];
+const LEAD = {"O mais rápido possível.":"Quente 🔥","Nos próximos 7 dias.":"Quente 🔥","Nos próximos 30 dias.":"Morno 🌤️","Estou apenas pesquisando.":"Frio ❄️"};
+
+const $ = id => document.getElementById(id);
+const ans = {}; let i = 0;
+
+// UTMs: lidos da URL e guardados durante o preenchimento
+const utm = {};
+(function(){
+  const p = new URLSearchParams(location.search);
+  ["utm_source","utm_medium","utm_campaign"].forEach(k=>{
+    let v = p.get(k);
+    try{ if(v) sessionStorage.setItem(k,v); else v = sessionStorage.getItem(k); }catch(e){}
+    if(v) utm[k]=v;
+  });
+})();
+
+function show(id){ document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id===id)); }
+
+function render(){
+  const s = STEPS[i];
+  $("q").innerHTML = s.q;
+  $("fill").style.width = (i/STEPS.length*100)+"%";
+  $("cnt").textContent = (i+1)+"/"+STEPS.length;
+  $("back").hidden = false;
+  const box = $("a"); box.innerHTML = "";
+  if(s.t==="text"){
+    box.innerHTML = '<input class="txt" id="in" type="text" autocomplete="off" maxlength="80" placeholder="'+s.ph+'"><div class="err" id="err"></div><button class="btn" id="next">CONTINUAR</button>';
+    const inp = $("in"); inp.value = ans[s.k]||"";
+    const go = ()=>{
+      const v = inp.value.trim();
+      if(v.length<2){ $("err").textContent="Preencha este campo para continuar."; inp.focus(); return; }
+      ans[s.k]=v; next();
+    };
+    $("next").onclick = go;
+    inp.onkeydown = e=>{ if(e.key==="Enter") go(); };
+    setTimeout(()=>inp.focus(),300);
+  } else {
+    const wrap = document.createElement("div");
+    wrap.className = "opts"+(s.cols===2?" grid2":"");
+    s.o.forEach(o=>{
+      const b = document.createElement("button");
+      b.className = "opt"+(ans[s.k]===o?" sel":""); b.textContent = o;
+      b.onclick = ()=>{ ans[s.k]=o; b.classList.add("sel"); setTimeout(next,180); };
+      wrap.appendChild(b);
+    });
+    box.appendChild(wrap);
+  }
+  box.style.animation="none"; void box.offsetWidth; box.style.animation="in .35s ease both";
+}
+function next(){ if(i<STEPS.length-1){ i++; render(); } else finish(); }
+function finish(){ $("fill").style.width="100%"; show("done"); }
+
+$("start").onclick = ()=>{ show("quiz"); render(); };
+$("back").onclick = ()=>{ if(i>0){ i--; render(); } else show("intro"); };
+$("edit").onclick = ()=>{ i=STEPS.length-1; show("quiz"); render(); };
+
+function buildMessage(){
+  const origem = Object.keys(utm).length
+    ? ["utm_source","utm_medium","utm_campaign"].filter(k=>utm[k]).map(k=>k.replace("utm_","")+": "+utm[k]).join(" | ")
+    : "Acesso direto";
+  return "Olá! Tenho interesse em contratar um cardápio digital da WRC Digital.\n\n"+
+    "Nome: "+ans.nome+"\n"+
+    "Estabelecimento: "+ans.estabelecimento+"\n"+
+    "Segmento: "+ans.segmento+"\n"+
+    "Cidade: "+ans.cidade+"\n"+
+    "Cardápio atual: "+ans.atual+"\n"+
+    "Interesse: "+ans.interesse+"\n"+
+    "Prazo para contratação: "+ans.prazo+"\n"+
+    "Origem: "+origem+"\n"+
+    "Classificação: "+(LEAD[ans.prazo]||"Frio ❄️")+"\n\n"+
+    "Gostaria de receber mais informações!";
+}
+$("wa").onclick = ()=>{
+  const num = WHATSAPP_NUMBER.replace(/\D/g,"");
+  if(!num){ alert("Configure WHATSAPP_NUMBER no topo do script em index.html."); return; }
+  window.location.href = "https://wa.me/"+num+"?text="+encodeURIComponent(buildMessage());
+};
+</script>
+</body>
+</html>
